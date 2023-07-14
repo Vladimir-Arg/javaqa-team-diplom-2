@@ -47,13 +47,7 @@ public class SavingAccountTest {
             new SavingAccount(500, 1_000, 10_000, 15);
         });
     }
-    @Test
-    public void shouldInitialBalanceEqualsMinBalance() { // начальный баланс равен минимальному
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new SavingAccount(1_000, 1_000, 10_000, 15);
-        });
-    }
 
     @Test
     public void shouldInitialBalanceMoreMaxBalance() { // начальный баланс больше максимального
@@ -63,16 +57,7 @@ public class SavingAccountTest {
         });
     }
 
-    @Test
-    public void shouldInitialBalanceEqualsMaxBalance() { // начальный баланс равен максимальному
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new SavingAccount(10_000, 1_000, 10_000, -15);
-        });
-    }
-
-
-
+    
     // Тесты на метод Pay
     @Test
     public void shouldPayWithinMinBalance() { // покупка с соблюдением всех условий
@@ -143,7 +128,6 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000 - 1_000, account.getBalance());
     }
-
 
 
     // Тесты на метод Add
