@@ -57,7 +57,7 @@ public class SavingAccountTest {
         });
     }
 
-    
+
     // Тесты на метод Pay
     @Test
     public void shouldPayWithinMinBalance() { // покупка с соблюдением всех условий
