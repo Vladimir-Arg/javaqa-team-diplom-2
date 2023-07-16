@@ -15,6 +15,7 @@ public class CreditAccountTest {
         account.add(3_000);
         Assertions.assertEquals(3_000, account.getBalance());
     }
+
     @Test
     public void shouldDeductZeroBalanceToNegativeBalance() { // Пополнение ненулевого баланса на отрицательное число (вычитание от нулевого баланса через функцию add); запрос баланса после пополнения
         CreditAccount account = new CreditAccount(
@@ -25,6 +26,7 @@ public class CreditAccountTest {
         account.add(-3_000);
         Assertions.assertEquals(4_000, account.getBalance());
     }
+
     @Test
     void shouldPositiveBalanceAddNull() { // Пополнение положительного баланса на "ноль"; запрос баланса после пополнения
         CreditAccount account = new CreditAccount(
@@ -36,13 +38,15 @@ public class CreditAccountTest {
         Assertions.assertEquals(37, account.getBalance());
     }
 
-// Тесты для проверки создания кредитного аккаунта
+    // Тесты для проверки создания кредитного аккаунта
     @Test
     void shouldCreateAccountWithNegativeBalance() { // Создание кредитного аккаунта с отрицательным начальным балансом
+
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new CreditAccount(-5_000, 1_000, 15);
         });
     }
+
     @Test
     void shouldCreateCorrectAccountAndGetBalance() {         // Создание кредитного аккаунта с ненулевыми значениями; запрос баланса
         CreditAccount account = new CreditAccount(
@@ -53,8 +57,9 @@ public class CreditAccountTest {
         Assertions.assertEquals(2_000, account.getBalance());
 
     }
+
     @Test
-    void shouldCreateCorrectNullAccountAndGetBalance(){ // Создание кредитного аккаунта с нулевыми значениями начального баланса, лимита и кредитной ставкой; запрос баланса
+    void shouldCreateCorrectNullAccountAndGetBalance() { // Создание кредитного аккаунта с нулевыми значениями начального баланса, лимита и кредитной ставкой; запрос баланса
         CreditAccount account = new CreditAccount(
                 0,
                 0,
@@ -62,8 +67,9 @@ public class CreditAccountTest {
         );
         Assertions.assertEquals(0, account.getBalance());
     }
+
     @Test
-    void shouldCreateCorrectNullAccountAndGetRate(){ // Создание кредитного аккаунта с нулевыми значениями начального баланса, лимита и кредитной ставкой; запрос кредитной ставки
+    void shouldCreateCorrectNullAccountAndGetRate() { // Создание кредитного аккаунта с нулевыми значениями начального баланса, лимита и кредитной ставкой; запрос кредитной ставки
         CreditAccount account = new CreditAccount(
                 0,
                 0,
@@ -72,12 +78,14 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.getRate());
     }
+
     @Test
-    void shouldCreateAccountWithNegativeRate(){// Создание кредитного аккаунта с отрицательной процентной ставкой
+    void shouldCreateAccountWithNegativeRate() {// Создание кредитного аккаунта с отрицательной процентной ставкой
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new CreditAccount(5_000, 1_000,  -15);
+            new CreditAccount(5_000, 1_000, -15);
         });
     }
+
     @Test
     void shouldCreateCorrectAccountAndGetRate() { // Создание кредитного аккаунта с ненулевыми корректными значениями
         CreditAccount account = new CreditAccount(
@@ -101,6 +109,7 @@ public class CreditAccountTest {
         account.pay(3_000);
         Assertions.assertEquals(-3000, account.getBalance());
     }
+
     @Test
     void shouldPayWithNegativeAmount() { // Покупка на отрицательную сумму (пополнение баланса через метод pay); запрос баланса
 
@@ -112,6 +121,7 @@ public class CreditAccountTest {
         account.pay(-3_000);
         Assertions.assertEquals(66, account.getBalance());
     }
+
     @Test
     void shouldPayWithZeroAmount() { // Покупка на нулевую сумму; запрос баланса
 
@@ -123,6 +133,7 @@ public class CreditAccountTest {
         account.pay(0);
         Assertions.assertEquals(66, account.getBalance());
     }
+
     @Test
     void shouldPayFromPositiveBalanceToPositiveBalance() { // Покупка при положительном начальном балансе, после покупки баланс положительный; запрос баланса
         CreditAccount account = new CreditAccount(
@@ -131,8 +142,9 @@ public class CreditAccountTest {
                 15
         );
         account.pay(300);
-        Assertions.assertEquals(777-300, account.getBalance());
+        Assertions.assertEquals(777 - 300, account.getBalance());
     }
+
     @Test
     void shouldPayFromPositiveBalanceToNegativeBalanceLessCreditLimit() { // Покупка при положительном начальном балансе, после покупки баланс отрицательный, в рамках лимита; запрос баланса
         CreditAccount account = new CreditAccount(
@@ -141,8 +153,9 @@ public class CreditAccountTest {
                 15
         );
         account.pay(1_000);
-        Assertions.assertEquals(777-1_000, account.getBalance());
+        Assertions.assertEquals(777 - 1_000, account.getBalance());
     }
+
     @Test
     void shouldPayFromPositiveBalanceEqualCreditLimit() { // Покупка при положительном начальном балансе, после покупки баланс равен лимиту; запрос баланса
         CreditAccount account = new CreditAccount(
@@ -153,8 +166,9 @@ public class CreditAccountTest {
         account.pay(5_000);
         Assertions.assertEquals(-4000, account.getBalance());
     }
+
     @Test
-        void shouldPayFromZeroBalanceToMoreCreditLimit() { // Покупка при нулевом начальном балансе, после покупки баланс отрицательный, выходит за рамки лимита; запрос баланса
+    void shouldPayFromZeroBalanceToMoreCreditLimit() { // Покупка при нулевом начальном балансе, после покупки баланс отрицательный, выходит за рамки лимита; запрос баланса
         CreditAccount account = new CreditAccount(
                 0,
                 500,
@@ -174,6 +188,7 @@ public class CreditAccountTest {
         );
         Assertions.assertEquals(0, account.yearChange());
     }
+
     @Test
     void shouldYearChangeNegativeBalance() {  // Расчет процентов при отрицательном балансе
         CreditAccount account = new CreditAccount(
@@ -184,6 +199,7 @@ public class CreditAccountTest {
         account.pay(200); // выставление отрицательного баланса
         Assertions.assertEquals(-30, account.yearChange());
     }
+
     @Test
     void shouldYearChangeZeroBalance() {  // Расчет процентов при нулевом балансе
         CreditAccount account = new CreditAccount(
@@ -194,6 +210,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
+
     @Test
     void shouldYearChangeZeroRate() {  // Расчет процентов при нулевой ставке
         CreditAccount account = new CreditAccount(
@@ -215,6 +232,7 @@ public class CreditAccountTest {
         );
         Assertions.assertEquals(5_000, account.getCreditLimit());
     }
+
     @Test
     void shouldSetRate() { // выставление новой ставки (проверка метода account.setRate)
         CreditAccount account = new CreditAccount(
