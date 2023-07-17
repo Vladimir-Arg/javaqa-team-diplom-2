@@ -8,20 +8,20 @@ public class SavingAccountTest {
     // Общие проверки
 
     @Test
-    public void shouldMinBalanceMoreNaxBalance() { // минимальный баланс больше максимального
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new SavingAccount(5_000, 5_000, 2_000, -15);
-        });
-
-    }
-
-    @Test
     public void shouldMinBalanceLessZero() { // минимальный баланс меньше 0
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new SavingAccount(5_000, -1_000, 10_000, 15);
         });
+    }
+
+    @Test
+    public void shouldMinBalanceMoreNaxBalance() { // максимальный баланс меньше минимального
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new SavingAccount(5_000, 5_000, 2_000, 15);
+        });
+
     }
 
     @Test
@@ -57,7 +57,7 @@ public class SavingAccountTest {
         });
     }
 
-    
+
     // Тесты на метод Pay
     @Test
     public void shouldPayWithinMinBalance() { // покупка с соблюдением всех условий
@@ -174,7 +174,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldAddNegativInMaxBalance() { // пополнение на отрицательную сумму
+    public void shouldAddNegativeInMaxBalance() { // пополнение на отрицательную сумму
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -205,8 +205,8 @@ public class SavingAccountTest {
     public void shouldYearChange() { // нормальный годовой процент
         SavingAccount account = new SavingAccount(
                 50_000,
-                1_000,
-                10_000,
+                50_000,
+                100_000,
                 5
         );
 
@@ -219,7 +219,7 @@ public class SavingAccountTest {
     public void shouldZeroInitialBalanceYearChange() { // нулевая сумма на счету
         SavingAccount account = new SavingAccount(
                 0,
-                1_000,
+                0,
                 10_000,
                 10
         );
@@ -250,5 +250,27 @@ public class SavingAccountTest {
             new SavingAccount(5_000, 1_000, 10_000, -15);
         });
 
+    }
+
+    @Test
+    void shouldGetMinBalance() { // получение минимального баланса
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+        Assertions.assertEquals(1_000, account.getMinBalance());
+    }
+
+    @Test
+    void shouldGetMaxBalance() { // получение максимального баланса
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+        Assertions.assertEquals(10_000, account.getMaxBalance());
     }
 }
