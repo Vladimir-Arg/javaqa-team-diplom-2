@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class BankTest {
 
     @Test
-    void shouldTransferSavingCorrect() { // Успешное проведение перевода между дебетовыми картами с допустимыми значениями
+    void shouldTransferSavingCorrect() { // РЈСЃРїРµС€РЅРѕРµ РїСЂРѕРІРµРґРµРЅРёРµ РїРµСЂРµРІРѕРґР° РјРµР¶РґСѓ РґРµР±РµС‚РѕРІС‹РјРё РєР°СЂС‚Р°РјРё СЃ РґРѕРїСѓСЃС‚РёРјС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
         SavingAccount from = new SavingAccount(200, 0, 15_000, 20);
         SavingAccount to = new SavingAccount(1_000, 10, 10_000, 15);
 
@@ -17,7 +17,7 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditPositiveBalance() { // Проведение перевода между кредитными картами с положительным балансом до и после операции
+    void shouldTransferCreditPositiveBalance() { // РџСЂРѕРІРµРґРµРЅРёРµ РїРµСЂРµРІРѕРґР° РјРµР¶РґСѓ РєСЂРµРґРёС‚РЅС‹РјРё РєР°СЂС‚Р°РјРё СЃ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РґРѕ Рё РїРѕСЃР»Рµ РѕРїРµСЂР°С†РёРё
         CreditAccount from = new CreditAccount(2_000, 15_000, 20);
         CreditAccount to = new CreditAccount(1_000, 10_000, 15);
 
@@ -28,12 +28,12 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditNegativeBalance() { // Проведение перевода между кредитными картами с отрицательным балансом до и после операции.
+    void shouldTransferCreditNegativeBalance() { // РџСЂРѕРІРµРґРµРЅРёРµ РїРµСЂРµРІРѕРґР° РјРµР¶РґСѓ РєСЂРµРґРёС‚РЅС‹РјРё РєР°СЂС‚Р°РјРё СЃ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РґРѕ Рё РїРѕСЃР»Рµ РѕРїРµСЂР°С†РёРё.
         CreditAccount from = new CreditAccount(0, 15_000, 20);
-            // Делаем отрицательный баланс карты отправителя до перевода
+            // Р”РµР»Р°РµРј РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ Р±Р°Р»Р°РЅСЃ РєР°СЂС‚С‹ РѕС‚РїСЂР°РІРёС‚РµР»СЏ РґРѕ РїРµСЂРµРІРѕРґР°
             from.pay(2_000);
         CreditAccount to = new CreditAccount(0, 10_000, 15);
-            // Делаем отрицательный баланс карты получателя до перевода
+            // Р”РµР»Р°РµРј РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ Р±Р°Р»Р°РЅСЃ РєР°СЂС‚С‹ РїРѕР»СѓС‡Р°С‚РµР»СЏ РґРѕ РїРµСЂРµРІРѕРґР°
             to.pay(3_000);
 
         Bank account = new Bank();
@@ -43,10 +43,10 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditNegativeToPositiveBalance() { // КРЕДИТКИ До перевода баланс карты получателя отрицательный, после перевода - положительный
+    void shouldTransferCreditNegativeToPositiveBalance() { // РљР Р•Р”РРўРљР Р”Рѕ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РєР°СЂС‚С‹ РїРѕР»СѓС‡Р°С‚РµР»СЏ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№, РїРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° - РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№
         CreditAccount from = new CreditAccount(5_000, 15_000, 20);
         CreditAccount to = new CreditAccount(0, 10_000, 15);
-            to.pay(1_000); // Делаем отрицательный баланс карты получателя до перевода
+            to.pay(1_000); // Р”РµР»Р°РµРј РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ Р±Р°Р»Р°РЅСЃ РєР°СЂС‚С‹ РїРѕР»СѓС‡Р°С‚РµР»СЏ РґРѕ РїРµСЂРµРІРѕРґР°
 
         Bank account = new Bank();
         account.transfer(from, to, 2_000);
@@ -55,7 +55,7 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditPositiveToNegativeBalance() { // КРЕДИТКИ До перевода баланс отправителя положительный, после - отрицательный
+    void shouldTransferCreditPositiveToNegativeBalance() { // РљР Р•Р”РРўРљР Р”Рѕ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№, РїРѕСЃР»Рµ - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№
         CreditAccount from = new CreditAccount(1_000, 15_000, 20);
         CreditAccount to = new CreditAccount(1_000, 10_000, 15);
 
@@ -67,7 +67,7 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditOverLimit() { // КРЕДИТКИ После перевода баланс отправителя выходит за лимит
+    void shouldTransferCreditOverLimit() { // РљР Р•Р”РРўРљР РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ РІС‹С…РѕРґРёС‚ Р·Р° Р»РёРјРёС‚
         CreditAccount from = new CreditAccount(1_000, 1_000, 20);
         CreditAccount to = new CreditAccount(1_000, 10_000, 15);
 
@@ -77,7 +77,7 @@ class BankTest {
         Assertions.assertEquals(1_000, to.getBalance());
     }
     @Test
-    void shouldTransferCreditEqualLimit() { // КРЕДИТКИ После перевода баланс отправителя равен лимиту баланса
+    void shouldTransferCreditEqualLimit() { // РљР Р•Р”РРўРљР РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ СЂР°РІРµРЅ Р»РёРјРёС‚Сѓ Р±Р°Р»Р°РЅСЃР°
         CreditAccount from = new CreditAccount(1_000, 2_000, 20);
         CreditAccount to = new CreditAccount(1_000, 1_000, 15);
 
@@ -87,7 +87,7 @@ class BankTest {
         Assertions.assertEquals(4_000, to.getBalance());
     }
     @Test
-    void shouldTransferZeroAmount() { // Нулевой перевод (вне зависимости от карт)
+    void shouldTransferZeroAmount() { // РќСѓР»РµРІРѕР№ РїРµСЂРµРІРѕРґ (РІРЅРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєР°СЂС‚)
         CreditAccount from = new CreditAccount(111, 1_000, 20);
         CreditAccount to = new CreditAccount(222, 10_000, 15);
 
@@ -97,7 +97,7 @@ class BankTest {
         Assertions.assertEquals(222, to.getBalance());
     }
     @Test
-    void shouldTransferNegativeAmount() { // Отрицательный перевод (вне зависимости от карт)
+    void shouldTransferNegativeAmount() { // РћС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ РїРµСЂРµРІРѕРґ (РІРЅРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєР°СЂС‚)
         CreditAccount from = new CreditAccount(5_000, 1_000, 20);
         CreditAccount to = new CreditAccount(0, 10_000, 15);
 
@@ -107,7 +107,7 @@ class BankTest {
         Assertions.assertEquals(0, to.getBalance());
     }
     @Test
-    void shouldTransferSavingLessMinBalance() { // ДЕБЕТОВЫЕ После перевода баланс отправителя меньше минимального баланса
+    void shouldTransferSavingLessMinBalance() { // Р”Р•Р‘Р•РўРћР’Р«Р• РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ РјРµРЅСЊС€Рµ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ Р±Р°Р»Р°РЅСЃР°
         SavingAccount from = new SavingAccount(2_000, 1_000, 15_000, 20);
         SavingAccount to = new SavingAccount(1_000, 1_000, 10_000, 15);
 
@@ -117,7 +117,7 @@ class BankTest {
         Assertions.assertEquals(1_000, to.getBalance());
     }
     @Test
-    void shouldTransferSavingOverMaxBalance() { // ДЕБЕТОВЫЕ После перевода баланс получателя больше максимального баланса
+    void shouldTransferSavingOverMaxBalance() { // Р”Р•Р‘Р•РўРћР’Р«Р• РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р±Р°Р»Р°РЅСЃР°
         SavingAccount from = new SavingAccount(5_000, 1_000, 10_000, 20);
         SavingAccount to = new SavingAccount(2_000, 1_000, 3_000, 15);
 
@@ -127,7 +127,7 @@ class BankTest {
         Assertions.assertEquals(2_000, to.getBalance());
     }
     @Test
-    void shouldTransferSavingEqualMaxBalance() { // ДЕБЕТОВЫЕ После перевода баланс получателя равен максимальному баланса
+    void shouldTransferSavingEqualMaxBalance() { // Р”Р•Р‘Р•РўРћР’Р«Р• РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ СЂР°РІРµРЅ РјР°РєСЃРёРјР°Р»СЊРЅРѕРјСѓ Р±Р°Р»Р°РЅСЃР°
         SavingAccount from = new SavingAccount(5_000, 1_000, 10_000, 20);
         SavingAccount to = new SavingAccount(2_000, 1_000, 5_000, 15);
 
@@ -137,7 +137,7 @@ class BankTest {
         Assertions.assertEquals(5_000, to.getBalance());
     }
     @Test
-    void shouldTransferSavingEqualMinBalance() { // ДЕБЕТОВЫЕ После перевода баланс отправителя равен минимальному баланса
+    void shouldTransferSavingEqualMinBalance() { // Р”Р•Р‘Р•РўРћР’Р«Р• РџРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ СЂР°РІРµРЅ РјРёРЅРёРјР°Р»СЊРЅРѕРјСѓ Р±Р°Р»Р°РЅСЃР°
         SavingAccount from = new SavingAccount(4_000, 1_000, 15_000, 20);
         SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
 
@@ -147,7 +147,7 @@ class BankTest {
         Assertions.assertEquals(7_000, to.getBalance());
     }
     @Test
-    void shouldTransferCreditPositiveBalanceToSave() { // Успешный перевод с кредитки на дебетовую (обе с положительным балансом до и после операции)
+    void shouldTransferCreditPositiveBalanceToSave() { // РЈСЃРїРµС€РЅС‹Р№ РїРµСЂРµРІРѕРґ СЃ РєСЂРµРґРёС‚РєРё РЅР° РґРµР±РµС‚РѕРІСѓСЋ (РѕР±Рµ СЃ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РґРѕ Рё РїРѕСЃР»Рµ РѕРїРµСЂР°С†РёРё)
         CreditAccount from = new CreditAccount(4_000, 10_000, 20);
         SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
 
@@ -157,7 +157,7 @@ class BankTest {
         Assertions.assertEquals(7_000, to.getBalance());
     }
     @Test
-    void shouldTransferCreditNegativeBalanceToSave() { // Успешный перевод с кредитки на дебетовую (Кредитка с отрицательным балансом до и после операции)
+    void shouldTransferCreditNegativeBalanceToSave() { // РЈСЃРїРµС€РЅС‹Р№ РїРµСЂРµРІРѕРґ СЃ РєСЂРµРґРёС‚РєРё РЅР° РґРµР±РµС‚РѕРІСѓСЋ (РљСЂРµРґРёС‚РєР° СЃ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РґРѕ Рё РїРѕСЃР»Рµ РѕРїРµСЂР°С†РёРё)
         CreditAccount from = new CreditAccount(0, 10_000, 20);
             from.pay(500);
         SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
@@ -169,7 +169,7 @@ class BankTest {
     }
 
     @Test
-    void shouldTransferCreditZeroBalanceToSave() { // Успешный перевод с кредитки на дебетовую (Кредитка с нулевым балансом до и с отрицательным балансом после операции)
+    void shouldTransferCreditZeroBalanceToSave() { // РЈСЃРїРµС€РЅС‹Р№ РїРµСЂРµРІРѕРґ СЃ РєСЂРµРґРёС‚РєРё РЅР° РґРµР±РµС‚РѕРІСѓСЋ (РљСЂРµРґРёС‚РєР° СЃ РЅСѓР»РµРІС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РґРѕ Рё СЃ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј Р±Р°Р»Р°РЅСЃРѕРј РїРѕСЃР»Рµ РѕРїРµСЂР°С†РёРё)
         CreditAccount from = new CreditAccount(4_000, 10_000, 20);
         SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
 
@@ -179,7 +179,7 @@ class BankTest {
         Assertions.assertEquals(7_000, to.getBalance());
     }
     @Test
-    void shouldTransferCreditToSaveOverMax() { // Перевод с кредитки на дебетовую (после перевода баланс дебетовой выходит за максимум)
+    void shouldTransferCreditToSaveOverMax() { // РџРµСЂРµРІРѕРґ СЃ РєСЂРµРґРёС‚РєРё РЅР° РґРµР±РµС‚РѕРІСѓСЋ (РїРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° Р±Р°Р»Р°РЅСЃ РґРµР±РµС‚РѕРІРѕР№ РІС‹С…РѕРґРёС‚ Р·Р° РјР°РєСЃРёРјСѓРј)
         CreditAccount from = new CreditAccount(3_000, 10_000, 20);
         SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
 
