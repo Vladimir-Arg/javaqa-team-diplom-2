@@ -167,6 +167,7 @@ class BankTest {
         Assertions.assertEquals(-1_200, from.getBalance());
         Assertions.assertEquals(4_700, to.getBalance());
     }
+
     @Test
     void shouldTransferCreditZeroBalanceToSave() { // Успешный перевод с кредитки на дебетовую (Кредитка с нулевым балансом до и с отрицательным балансом после операции)
         CreditAccount from = new CreditAccount(4_000, 10_000, 20);
@@ -176,5 +177,15 @@ class BankTest {
         account.transfer(from, to, 3_000);
         Assertions.assertEquals(1_000, from.getBalance());
         Assertions.assertEquals(7_000, to.getBalance());
+    }
+    @Test
+    void shouldTransferCreditToSaveOverMax() { // Перевод с кредитки на дебетовую (после перевода баланс дебетовой выходит за максимум)
+        CreditAccount from = new CreditAccount(3_000, 10_000, 20);
+        SavingAccount to = new SavingAccount(4_000, 1_000, 10_000, 15);
+
+        Bank account = new Bank();
+        account.transfer(from, to, 10_000);
+        Assertions.assertEquals(3_000, from.getBalance());
+        Assertions.assertEquals(4_000, to.getBalance());
     }
 }
